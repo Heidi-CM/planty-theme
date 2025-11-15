@@ -23,3 +23,20 @@ function child_enqueue_styles() {
 }
 
 add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
+
+// Ajouter un lien "Admin" dans le menu uniquement pour les utilisateurs connectés
+function planty_add_admin_link($items, $args) {
+
+    // Vérifier si un utilisateur est connecté
+    if (is_user_logged_in()) {
+
+        // Créer le lien Admin (vers le tableau de bord WordPress)
+        $admin_link = '<li class="menu-item"><a href="' . admin_url() . '">Admin</a></li>';
+
+        // Ajouter le lien à la fin du menu
+        $items .= $admin_link;
+    }
+
+    return $items;
+}
+add_filter('wp_nav_menu_items', 'planty_add_admin_link', 10, 2);
