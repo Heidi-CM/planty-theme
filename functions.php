@@ -26,7 +26,7 @@ add_action( 'wp_enqueue_scripts', 'child_enqueue_styles', 15 );
 
 function planty_add_admin_link($items, $args) {
 
-    if (is_user_logged_in()) {
+if ($args->theme_location == 'Menu principal' && is_user_logged_in()) {
 
         $admin_link = '<li class="menu-item"><a href="' . admin_url() . '">Admin</a></li>';
 
@@ -36,3 +36,42 @@ function planty_add_admin_link($items, $args) {
     return $items;
 }
 add_filter('wp_nav_menu_items', 'planty_add_admin_link', 10, 2);
+
+
+/**
+ * Ajoute un lien "Admin" dans le menu "Principal"
+ * visible uniquement pour les utilisateurs connectés.
+ */
+function ajouter_lien_admin_menu_principal( $items, $args ) {
+
+    // Récupérer l'objet de menu, quel que soit le type de $args->menu (ID, objet, string)
+    $menu_obj = null;
+
+    if ( ! empty( $args->menu ) ) {
+
+        if ( is_object( $args->menu ) ) {
+            // $args->menu est déjà un objet de type WP_Term
+            $menu_obj = $args->menu;
+
+        } else {
+            // $args->menu est un ID ou un nom → on demande à WP l'objet complet
+            $menu_obj = wp_get_nav_menu_object( $args->menu );
+        }
+    }
+
+    // Si on a bien un menu, on vérifie son nom
+    $is_principal = ( $menu_obj && isset( $menu_obj->name ) && $menu_obj->name === 'Principal' );
+
+    // On ajoute le lien seulement :
+    // - si c'est le menu "Principal"
+    // - et si l'utilisateur est connecté
+    if ( $is_principal && is_user_logged_in() ) {
+
+        $items .= '<li class="menu-item menu-item-admin">
+            <a href="' . esc_url( admin_url() ) . '">Admin</a>
+        </li>';
+    }
+
+    return $items;
+}
+add_filter( 'wp_nav_menu_items', 'ajouter_lien_admin_menu_principal', 10, 2 );

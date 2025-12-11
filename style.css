@@ -50,4 +50,134 @@ height:28px;
     font-size: 16px;
 }
 
-.text3 {
+/* Style spécifique au lien Admin ajouté dynamiquement */
+.menu-item-admin a {
+    color: #000 !important;          /* texte noir */
+    font-weight: 600;                /* un peu plus visible */
+    padding: 0 15px;                 /* espace à gauche/droite */
+    display: flex;                   /* permet l'alignement vertical */
+    align-items: center;             /* centre verticalement */
+    height: 100%;                    /* prend la hauteur du menu */
+}
+
+
+.formulaire-commander > p {
+  display: flex !important;
+  width: 100%;
+  gap: 40px;
+}
+
+.formulaire-commander > p > .col-gauche,
+.formulaire-commander > p > .col-droite {
+  width: 48% !important;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.formulaire-commander {
+  display: flex !important;   
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+
+.formulaire-commander .col-gauche,
+.formulaire-commander .col-droite {
+  width: 48% !important;       
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+.formulaire-commander .col-gauche {
+  position: relative;
+  padding-right: 50px;
+  border: none;
+}
+
+
+.formulaire-commander .col-gauche::after {
+  content: "";
+  position: absolute;
+  top: 0;                
+  right: 0;
+  width: 1px;
+  height: 90%;     
+  background-color: #fff;
+}
+
+.formulaire-commander .col-droite {
+  padding-left: 10px;
+}
+
+
+.formulaire-commander h2 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+
+.formulaire-commander label {
+  color: white;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.formulaire-commander input[type="text"], 
+.formulaire-commander input[type="email"],
+.formulaire-commander input[type="tel"] {
+  padding: 30px 17px !important;
+}
+
+
+.form-bouton {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.form-bouton input[type="submit"] {
+  background: #e7c0bb;
+  color: white;
+  padding: 20px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-bouton input[type="submit"]:hover {
+  opacity: 0.9;
+}
+.wpcf7 input[type="submit"] {
+    display: block;
+    margin: 0 auto; 
+    width: auto; 
+}
+
+
+.wpcf7 form label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.wpcf7 input[type="submit"] {
+    background-color: #d9a5a5; 
+    color: white;
+    padding: 20px 45px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
